@@ -1,16 +1,48 @@
 #!/usr/bin/perl
 
-use Getopt::Std ;
+use Data::Dumper;
+use IO::Socket;
+use Getopt::Std;
+use XML::Parser;
 
 use strict ;
 use warnings ;
 
-my $CONFIG_FILE = "servers.txt" ;
-my $numArgs = @ARGV ;
+my $CONFIG_FILE = "servers.xml";
 
-if( $numArgs == 1 )
+sub usage()
 {
-	$CONFIG_FILE = $ARGV[0] ;
+	print "usage: ./check_servers.pl <servers.txt>\n";
+	exit 1;
+}
+
+sub runTest($)
+{
+	my $server = shift ;
+
+}	
+
+sub char_handler
+{
+	;
+}
+
+sub default_handler
+{
+
+	my ($hostname,$port) = @_ ;
+
+	print $hostname . "\n";
 
 }
+
+my $parser = new XML::Parser(ErrorContext => 1);
+
+$parser->setHandlers(Char => \&char_handler,Default => \&default_handler);
+
+$parser->parsefile($CONFIG_FILE);
+
+print Dumper($parser);
+
+
 
