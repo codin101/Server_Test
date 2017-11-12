@@ -3,6 +3,7 @@
 use Getopt::Std ;
 
 use strict ;
+use warnings ;
 
 my $CONFIG_FILE = "servers.txt" ;
 my $numArgs = @ARGV ;
