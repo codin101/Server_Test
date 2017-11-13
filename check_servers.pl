@@ -4,11 +4,6 @@
 ######## Property of Motorola Solutions ############
 # Author: Patrick Eff                              #
 # Date: 11/12/2017                                 #
-#                                                  #
-#                                                  #
-#                                                  #
-#                                                  #
-#                                                  #
 ####################################################
 
 
@@ -32,18 +27,7 @@ sub runTest($)
 {
 	my $server = shift ;
 
-}	
-
-sub char_handler
-{
-	;
 }
-
-sub default_handler
-{
-	;
-}	
-
 
 
 ################ MAIN ###################
@@ -52,8 +36,11 @@ my $xml_hash = XML::Simple->new( KeepRoot => 1, KeyAttr => 1, ForceArray => 1 );
 
 my $response_hash = eval{ $xml_hash->XMLin( $CONFIG_FILE ) } ;
 
-#print $response_hash->{servers}[0]->{hostname}[0];
+print $response_hash->{servers}[0]->{hostname}[0];
+
+print Dumper($response_hash) ;
 
 
 
 
+&runTest
