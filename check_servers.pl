@@ -1,8 +1,21 @@
 #!/usr/bin/perl
 
+
+######## Property of Motorola Solutions ############
+# Author: Patrick Eff                              #
+# Date: 11/12/2017                                 #
+#                                                  #
+#                                                  #
+#                                                  #
+#                                                  #
+#                                                  #
+####################################################
+
+
 use IO::Socket;
 use Getopt::Std;
-use XML::Simple ;
+use XML::Simple;
+use Data::Dumper;
 
 use strict ;
 use warnings ;
@@ -31,12 +44,15 @@ sub default_handler
 	;
 }	
 
-my $parser = new XML::Parser(ErrorContext => 1);
 
-$parser->setHandlers(Char => \&char_handler,Default => \&default_handler);
 
-$parser->parsefile($CONFIG_FILE);
+################ MAIN ###################
 
+my $xml_hash = XML::Simple->new( KeepRoot => 1, KeyAttr => 1, ForceArray => 1 );
+
+my $response_hash = eval{ $xml_hash->XMLin( $CONFIG_FILE ) } ;
+
+#print $response_hash->{servers}[0]->{hostname}[0];
 
 
 

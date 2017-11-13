@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<server>
+<servers>
 	<hostname>youtube.com</hostname>
 	<port>443</port>
-</server>
-<server>
 	<hostname>gmail.com</hostname>
 	<port>443</port>
-</server>
-
-
-
+	<hostname>google.com</hostname>
+	<port>443</port>
+</servers>
