@@ -4,9 +4,9 @@ import sys
 import socket
 import xml.etree.ElementTree as ET
 
+numErrors = 0
 xmlFile = "open.xml" 
 errorFD = open("errors.txt","w")
-
 tree = ET.parse(xmlFile)
 root = tree.getroot()
 
@@ -14,7 +14,9 @@ def logError(a,b):
 
 	print("Error on",a,b)
 
-######### MAIN #########
+
+
+############ MAIN ##############
 
 for node in root:
 
@@ -33,9 +35,9 @@ for node in root:
 			print "Connected to %s:%s" %(hostName,port)
 		except:
 			logError(hostName,port)
+			numErrors = numErrors + 1
 
 		sockFD.close()
 
-
-
 errorFD.close()
+print "%s errors found" %(numErrors)
