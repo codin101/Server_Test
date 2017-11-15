@@ -6,6 +6,7 @@
 # Date: 11/12/2017                                 #
 ####################################################
 
+<<<<<<< .merge_file_NNguPr
 use IO::Socket;
 use XML::Simple;
 use Getopt::Long;
@@ -17,10 +18,22 @@ use warnings ;
 use feature qw(say);
 
 my $debug = 0 ;
+=======
+
+use IO::Socket;
+use Getopt::Std;
+use XML::Simple;
+use Data::Dumper;
+
+use strict ;
+use warnings ;
+
+>>>>>>> .merge_file_oUAD7u
 my $CONFIG_FILE = "servers.xml";
 
 sub usage()
 {
+<<<<<<< .merge_file_NNguPr
 	say "usage: ./check_servers.pl <servers.xml> <-d>";
 	exit 1;
 }
@@ -69,3 +82,30 @@ foreach my $entry(@arr)
 }
 
 
+=======
+	print "usage: ./check_servers.pl <servers.xml>\n";
+	exit 1;
+}
+
+sub runTest($)
+{
+	my $server = shift ;
+
+}
+
+
+################ MAIN ###################
+
+my $xml_hash = XML::Simple->new( KeepRoot => 1, KeyAttr => 1, ForceArray => 1 );
+
+my $response_hash = eval{ $xml_hash->XMLin( $CONFIG_FILE ) } ;
+
+print $response_hash->{servers}[0]->{hostname}[0];
+
+print Dumper($response_hash) ;
+
+
+
+
+&runTest
+>>>>>>> .merge_file_oUAD7u

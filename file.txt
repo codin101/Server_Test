@@ -1,0 +1,3 @@
+gmail.com
+google.com
+smtp.gmail.com
