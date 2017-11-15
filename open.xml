@@ -1,21 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <servers>
-<node hostname="gmail.com">
+<node hostname="plhp032.comm.mot.com">
+	<port>22</port>
+	<port>27</port>
+</node>
+<node hostname="bitbucket.mot-solutions.com">
 	<port>80</port>
 	<port>443</port>
-	<port>1720</port>
-</node>
-<node hostname="google.com">
-	<port>80</port>
-	<port>443</port>
-	<port>1720</port>
-</node>
-<node hostname="smtp.gmail.com">
-	<port>25</port>
-	<port>465</port>
-	<port>587</port>
-	<port>993</port>
-	<port>995</port>
-	<port>1720</port>
+	<port>7999</port>
 </node>
 </servers>
