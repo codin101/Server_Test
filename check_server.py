@@ -12,7 +12,7 @@ root = tree.getroot()
 
 def logError(a,b):
 
-	outFD.write("Could not connect to: ",a,b)
+	print("Error on",a,b)
 
 ######### MAIN #########
 
@@ -30,9 +30,7 @@ for node in root:
 		try:
 
 			sockFD.connect((ipAddr,port))
-			print "Connected to: ", hostName,port
-			#sockFD.close()
-
+			print "Connected to %s:%s" %(hostName,port)
 		except:
 			logError(hostName,port)
 
@@ -40,4 +38,4 @@ for node in root:
 
 
 
-outFD.close()
+errorFD.close()
