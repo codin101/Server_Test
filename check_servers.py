@@ -44,7 +44,8 @@ for node in root:
 		ipAddr = socket.gethostbyname(hostName)
 	except:
 		print "Failed to resolve hostname %s" %(hostName)
-		continue
+		exitCode = 1
+		continue 
 
 	for i in node.iter("port"):
 
