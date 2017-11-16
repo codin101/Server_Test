@@ -22,10 +22,9 @@ class Node:
 		return self.port
 
 def generateEmail(aList):
-	fd = open("error.txt","w")
+
 	for element in aList:
-		fd.write("Connection Failed on %s:%s\n" %(element.getHostName(),element.getPort()))
-	fd.close()	
+		print "Connection FAILED on %s:%s" %(element.getHostName(),element.getPort())
 	
 
 ############ MAIN ##############
@@ -45,7 +44,8 @@ for node in root:
 		ipAddr = socket.gethostbyname(hostName)
 	except:
 		print "Failed to resolve hostname %s" %(hostName)
-		continue
+		exitCode = 1
+		continue 
 
 	for i in node.iter("port"):
 
@@ -69,4 +69,4 @@ if len(aList) > 0:
 else:
 	print "Successfully connected to all servers"
 
-sys.exit(1)
+sys.exit(exitCode)
