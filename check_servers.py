@@ -69,4 +69,4 @@ if len(aList) > 0:
 else:
 	print "Successfully connected to all servers"
 
-sys.exit(exitCode)
+sys.exit(1)
