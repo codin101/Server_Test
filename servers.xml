@@ -2,21 +2,31 @@
 <servers>
 <node hostname="plhp032.comm.mot.com">
 	<port>22</port>
+	<port>23</port>
+	<port>371</port>
 </node>
 <node hostname="plhp061.comm.mot.com">
 	<port>22</port>
+	<port>23</port>
 </node>
 <node hostname="plhp087.comm.mot.com">
 	<port>22</port>
+	<port>23</port>
+	<port>371</port>
 </node>
 <node hostname="plhp088.comm.mot.com">
 	<port>22</port>
+	<port>23</port>
+	<port>371</port>
 </node>
 <node hostname="fl08bld01.comm.mot.com">
 	<port>22</port>
+	<port>23</port>
 </node>
 <node hostname="fl08bld71.comm.mot.com">
 	<port>22</port>
+	<port>23</port>
+	<port>371</port>
 </node>
 <node hostname="fl08lx066v.comm.mot.com">
 	<port>22</port>
@@ -37,6 +47,7 @@
 </node>
 <node hostname="fl08lxecloud05.comm.mot.com">
 	<port>22</port>
+	<port>371</port>
 </node>
 <node hostname="fl08lxecloud06.comm.mot.com">
 	<port>22</port>
@@ -46,9 +57,11 @@
 </node>
 <node hostname="fl08lxecloud09.comm.mot.com">
 	<port>22</port>
+	<port>371</port>
 </node>
 <node hostname="fl08lxecloud11.am.mot-solutions.com">
 	<port>22</port>
+	<port>371</port>
 </node>
 <node hostname="fl08lxkw001v.comm.mot.com">
 	<port>22</port>
@@ -62,9 +75,12 @@
 </node>
 <node hostname="dgj736-3.am.mot-solutions.com">
 	<port>22</port>
+	<port>8080</port>
 </node>
 <node hostname="fl08jenkins.mot-solutions.com">
 	<port>22</port>
+	<port>8443</port>
+	<port>9443</port>
 </node>
 <node hostname="gmail.com">
 	<port>80</port>
@@ -78,6 +94,8 @@
 	<port>22</port>
 	<port>80</port>
 	<port>443</port>
+	<port>8081</port>
+	<port>29418</port>
 </node>
 <node hostname="artifactory.mot-solutions.com">
 	<port>80</port>
