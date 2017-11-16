@@ -22,7 +22,6 @@
 <node hostname="fl08bld01.comm.mot.com">
 	<port>22</port>
 	<port>23</port>
-	<port>995</port>
 </node>
 <node hostname="fl08bld71.comm.mot.com">
 	<port>22</port>
