@@ -22,10 +22,9 @@ class Node:
 		return self.port
 
 def generateEmail(aList):
-	fd = open("error.txt","w")
+
 	for element in aList:
-		fd.write("Connection Failed on %s:%s\n" %(element.getHostName(),element.getPort()))
-	fd.close()	
+		print "Connection FAILED on %s:%s" %(element.getHostName(),element.getPort())
 	
 
 ############ MAIN ##############
