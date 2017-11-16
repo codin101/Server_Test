@@ -101,4 +101,14 @@
 	<port>80</port>
 	<port>443</port>
 </node>
+<node hostname="ause1aswtmilbuild01.aws.mot-solutions.com">
+	<port>21</port>
+	<port>22</port>
+	<port>25</port>
+</node>
+<node hostname="fl08lx066v.am.mot-solutions.com">
+	<port>22</port>
+	<port>80</port>
+	<port>3306</port>
+</node>
 </servers>
