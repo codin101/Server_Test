@@ -22,9 +22,15 @@ class Node:
 		return self.port
 
 def generateEmail(aList):
+	
+
+	htmlFile = open("error.html","w")
+	htmlFile.write("<html>\n<head>\n<title>Build Servers Status</title>\n</head>\n<body>")
 
 	for element in aList:
-		print "Connection FAILED on %s:%s" %(element.getHostName(),element.getPort())
+		htmlFile.write("<p>Connection FAILED on %s:%s</p>" %(element.getHostName(),element.getPort()))
+
+	htmlFile.write("</body></html>")
 	
 
 ############ MAIN ##############
@@ -34,13 +40,20 @@ XML_FILE = "servers.xml"
 tree = ET.parse(XML_FILE)
 root = tree.getroot()
 
+htmlFile = open("status.html","w")
+htmlFile.write("<html><head><title>Build Server Status</title></head><body>")
+htmlFile.write("<table>")
+
+# if ( connect -> Green, else Red )
+
 
 aList = []
 for node in root:
 
 	hostName = node.get("hostname")
-	
-	try:
+	htmlFile.write("<tr><th>" + str(hostName) )
+
+	try:	
 		ipAddr = socket.gethostbyname(hostName)
 	except:
 		print "Failed to resolve hostname %s" %(hostName)
@@ -54,19 +67,32 @@ for node in root:
 
 		sockFD = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 		sockFD.settimeout(3)
-
+		
+		canConnect = 1
 		try:
 			sockFD.connect((ipAddr,port))
-			print "Connected to %s:%s" %(hostName,port)
+			#print "Connected to %s:%s" %(hostName,port)
 		except:
 			aList.append(aNode)
+			canConnect = 0
 			exitCode = 1
 
 		sockFD.close()
+		htmlFile.write("<td>")
+		if( canConnect == 1 ):
+			htmlFile.write("<font color='green'>" + str(port) + "</td>")
 
-if len(aList) > 0:
-	generateEmail(aList)
-else:
-	print "Successfully connected to all servers"
+		else:
+			htmlFile.write("<font color='red'>" + str(port) + "</td>")
+
+
+	htmlFile.write("</tr></th>")
+
+htmlFile.write("<table>")
+
+#if len(aList) > 0:
+#	generateEmail(aList)
+#else:
+#	print "Successfully connected to all servers"
 
 sys.exit(exitCode)
