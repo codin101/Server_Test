@@ -1,12 +1,5 @@
 #!/usr/bin/python
 
-###### Motorola Solutions #######
-#				#	
-#	Author: Patrick Eff	#
-#	Date: 11/15/2017	#
-#				#
-#################################
-
 import sys
 import socket
 import xml.etree.ElementTree as ET
@@ -90,36 +83,5 @@ for node in root:
 
 htmlFile.write("<table>")
 
-#if len(aList) > 0:
-#	generateEmail(aList)
-#else:
-#	print "Successfully connected to all servers"
 
 sys.exit(exitCode)
-#!/usr/bin/python
-
-import os
-import subprocess
-
-#h = "google.com"
-#r = os.system("ping -c 2 %s" %h)
-
-class J:
-
-	def __init__(self,h):
-		self.h = h	
-	def get(self):
-		return self.h
-
-
-a = J("sdf")
-print a.get()
-	
-#r = os.system("ping -c 2 " + "google.com" + " 2>/dev/null >/dev/null")
-
-#if r == 0:
-#	print "Up"
-#else:
-#	print "Down"
-
-
