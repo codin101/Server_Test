@@ -1,7 +1,9 @@
 #!/bin/bash
 
 startTime=$(date +%s)
-./check_server.py
+
+./check_servers.py
+
 endTime=$(date +%s)
 
 duration=$(($endTime - $startTime))
