@@ -87,6 +87,7 @@
 <node hostname="gmail.com">
 	<port>80</port>
 	<port>443</port>
+	<port>444</port>
 </node>
 <node hostname="jira.mot-solutions.com">
 	<port>80</port>
