@@ -14,8 +14,6 @@ class J:
 		return self.h
 
 
-a = J("sdf")
-print a.get()
 	
 #r = os.system("ping -c 2 " + "google.com" + " 2>/dev/null >/dev/null")
 

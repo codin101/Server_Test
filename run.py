@@ -33,6 +33,7 @@ def emailFailList(failList):
 
         hostName = i.getHostName()
         portList = i.getPorts()
+        # print Red , print yellow
         if not portList:
             print "Could not Resolve Host: " + hostName
         else:
