@@ -27,65 +27,42 @@ def emailFailList(failList):
     exitCode = 1
 
     for i in failList:
+	if not i.getPorts():
+		print "Could not resolve: " + hostName
+	else:
+		for j in i.getPorts():
+			print i.getHostName() + ":" + str(j)
 
-        hostName = i.getHostName()
-        portList = i.getPorts()
-    
-        # RED COULD NOT RESOLVE
-        # RED -> If can't connect() && can't Ping RED
-        # Yellow -> can ping, just port down
-
-        if not portList:
-        
-            print "Could not Resolve Host: " + hostName
-
-        else:
- 
-            returnCode = os.system("ping -c 2 " + hostName + " &>/dev/null")
-
-            if returnCode == 0:
-
-                print "Yellow: cannot connect to ports: "
- 
-            else:
-            
-                print "RED: cannot ping and ports are closed"
-
-            for j in portList:
-                print hostName + ":" + str(j)
-        
 
 def checkServers(nodeList):
 
     failList = []
     for e in nodeList:
 
-        hostName = e.getHostName()
+	hostName = e.getHostName()
+	portList = e.getPorts()
 
-        try:
-            ipAddr = socket.gethostbyname(hostName)
-        except:
-            failList.append(Node(hostName,None))
-            continue 
+	try:
+		ipAddr = socket.gethostbyname(hostName)
+	except:
+		failList.append(Node(hostName,None))
+		continue
+	
+	failedPorts = []	
+	for port in portList:
+		
+		sockFd = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+                sockFd.settimeout(3)
+		
+		try:
+			sockFd.connect((ipAddr,port))
+		except:
+			failedPorts.append(port)
+	
+	if failedPorts:
+		failList.append(Node(hostName,failedPorts))
 
-        portList = []
-        for port in e.getPorts():
-
-                sockFD = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-		sockFD.settimeout(3)
-
-                try:
-                    sockFD.connect((ipAddr,port))
-                except:
-                    portList.append(port)
-
-
-                sockFD.close()
-        
-        failList.append(Node(hostName,portList))
-
-    if failList:
-        emailFailList(failList)
+    emailFailList(failList)
 
 ########## MAIN ##########
 
