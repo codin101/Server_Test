@@ -28,8 +28,8 @@ def emailFailList(failList):
 	
     htmlFile = open("errors.html","w")
 
-    htmlFile.write("<html><head><link rel='stylesheet' type='text/css' href='style.css'>")
-    htmlFile.write("<title>Build Servers Offline</title></head>")
+#    htmlFile.write("<html><head><link rel='stylesheet' type='text/css' href='style.css'>")
+#    htmlFile.write("<title>Build Servers Offline</title></head>")
 
     for i in failList:
 	
@@ -55,7 +55,7 @@ def emailFailList(failList):
 			
 		htmlFile.write("</div></div></div>")
 	
-	htmlFile.write("</body></html>")
+#	htmlFile.write("</body></html>")
 	
 
 def checkServers(nodeList):
