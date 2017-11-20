@@ -1,15 +1,12 @@
 #!/usr/bin/python
 
+import os
 import sys
 import socket
 import xml.etree.ElementTree as ET
 
 global exitCode
 exitCode = 0
-
-# Node class has:
-# hostName
-# array of Ports
 
 class Node:
 
@@ -33,12 +30,29 @@ def emailFailList(failList):
 
         hostName = i.getHostName()
         portList = i.getPorts()
-        # print Red , print yellow
+    
+        # RED COULD NOT RESOLVE
+        # RED -> If can't connect() && can't Ping RED
+        # Yellow -> can ping, just port down
+
         if not portList:
+        
             print "Could not Resolve Host: " + hostName
+
         else:
+ 
+            returnCode = os.system("ping -c 2 " + hostName + " &>/dev/null")
+
+            if returnCode == 0:
+
+                print "Yellow: cannot connect to ports: "
+ 
+            else:
+            
+                print "RED: cannot ping and ports are closed"
+
             for j in portList:
-                print "Could not connect to " + hostName + ":" + str(j)
+                print hostName + ":" + str(j)
         
 
 def checkServers(nodeList):
@@ -73,7 +87,7 @@ def checkServers(nodeList):
     if failList:
         emailFailList(failList)
 
-#### MAIN ####
+########## MAIN ##########
 
 XML_FILE = "servers.xml"
 tree = ET.parse(XML_FILE)
