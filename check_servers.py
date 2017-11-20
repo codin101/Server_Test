@@ -53,9 +53,7 @@ def showFailures(failList):
     exitCode = 1
 
     mail = smtplib.SMTP("localhost")
-#    r = "Patrick.Eff@motorolasolutions.com"
-#    s = "Patrick.Eff@motorolasolutions.com"
-    
+
     sender = "Patrick.Eff@motorolasolutions.com"
     recv = "Patrick.Eff@motorolasolutions.com"
     subject = "Build Server CheckList: FAIL"
