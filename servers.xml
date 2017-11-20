@@ -4,7 +4,6 @@
 	<port>22</port>
 	<port>23</port>
 	<port>371</port>
-	<port>444</port>
 </node>
 <node hostname="plhp061.comm.mot.com">
 	<port>22</port>
@@ -14,7 +13,6 @@
 	<port>22</port>
 	<port>23</port>
 	<port>371</port>
-	<port>4343</port>
 </node>
 <node hostname="plhp088.comm.mot.com">
 	<port>22</port>
@@ -87,7 +85,6 @@
 <node hostname="gmail.com">
 	<port>80</port>
 	<port>443</port>
-	<port>444</port>
 </node>
 <node hostname="jira.mot-solutions.com">
 	<port>80</port>
