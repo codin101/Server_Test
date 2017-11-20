@@ -1,0 +1,15 @@
+===========gmail.com==========
+80,http
+443,https
+1720,h323q931
+===========google.com==========
+80,http
+443,https
+1720,h323q931
+===========smtp.gmail.com==========
+25,smtp
+465,smtps
+587,submission
+993,imaps
+995,pop3s
+1720,h323q931
