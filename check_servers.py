@@ -62,11 +62,11 @@ def showFailures(failList):
 	hostName = i.getHostName()
 
 	if not portList:
-		msg+= "Failed to Resolve Host: " + hostName 
+		msg+= "Failed to Resolve Host: " + hostName  + "\n"
 		continue 
 	else:
 		for j in portList:
-			msg+= "Failed to connect to " + hostName + ":" + str(j)	
+			msg+= "Failed to connect to " + hostName + ":" + str(j) + "\n"
 
     mail.sendmail(s,r,msg)
 
