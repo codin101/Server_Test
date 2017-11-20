@@ -56,7 +56,7 @@ def showFailures(failList):
 
     sender = "Patrick.Eff@motorolasolutions.com"
     recv = "Patrick.Eff@motorolasolutions.com"
-    subject = "Build Server CheckList: FAIL"
+    subject = "Build Server CheckList: FAILURE"
  
     msg = ""
     for i in failList:
