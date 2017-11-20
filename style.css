@@ -28,9 +28,9 @@
     background-color: inherit;
 }
 
-.navbar a:hover, .dropdown:hover .dropbtn {
-    background-color: red;
-}
+#.navbar a:hover, .dropdown:hover .dropbtn {
+#    background-color: white;
+#}
 
 .dropdown-content {
     display: none;

@@ -31,7 +31,6 @@ def emailFailList(failList):
     htmlFile.write("<html><head><link rel='stylesheet' type='text/css' href='style.css'>")
     htmlFile.write("<title>Build Servers Offline</title></head>")
 
-    b = []
     for i in failList:
 	
 	hostName = i.getHostName()
@@ -43,11 +42,18 @@ def emailFailList(failList):
 		htmlFile.write(hostName)
 		htmlFile.write("</font><i class='fa fa-caret-down'></i>")
 		htmlFile.write("</button><div class='dropdown-content'>")
-		htmlFile.write("<p>Failed to Resolve Hostname</p></div></div></div>")
+		htmlFile.write("<p>Cannot Reach Server!</p></div></div></div>")
 	else:
+		htmlFile.write("<div class='navbar'><div class='dropdown'>")
+		htmlFile.write("<button class='dropbtn'><font color='yellow'>")
+		htmlFile.write(hostName)
+		htmlFile.write("</font><i class='fa fa-caret-down'></i></button>")
+		htmlFile.write("<div class='dropdown-content'>")
 		for j in i.getPorts():
 			
-
+			htmlFile.write("<p>Port: " + str(j) + " is down</p>")
+			
+		htmlFile.write("</div></div></div>")
 	
 	htmlFile.write("</body></html>")
 	
@@ -76,7 +82,9 @@ def checkServers(nodeList):
 			sockFd.connect((ipAddr,port))
 		except:
 			failedPorts.append(port)
-	
+		
+		sockFd.close()
+
 	if failedPorts:
 		failList.append(Node(hostName,failedPorts))
 	
@@ -85,7 +93,7 @@ def checkServers(nodeList):
 
 ########## MAIN ##########
 
-XML_FILE = "servers.xml"
+XML_FILE = sys.argv[1]
 tree = ET.parse(XML_FILE)
 root = tree.getroot()
 
