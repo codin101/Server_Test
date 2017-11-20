@@ -25,6 +25,7 @@
 import os
 import sys
 import socket
+import string
 import smtplib
 import xml.etree.ElementTree as ET
 
