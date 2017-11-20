@@ -25,6 +25,7 @@
 import os
 import sys
 import socket
+import smtplib
 import xml.etree.ElementTree as ET
 
 global exitCode
@@ -50,18 +51,24 @@ def showFailures(failList):
     global exitCode
     exitCode = 1
 
+    mail = smtplib.SMTP("localhost")
+    r = "Patrick.Eff@motorolasolutions.com"
+    s = "Patrick.Eff@motorolasolutions.com"
+
+    msg = ""
     for i in failList:
 
 	portList = i.getPorts()
 	hostName = i.getHostName()
 
 	if not portList:
-		print "Failed to Resolve Host: " + hostName 
+		msg+= "Failed to Resolve Host: " + hostName 
 		continue 
 	else:
 		for j in portList:
-			print "Failed to connect to " + hostName + ":" + str(j)	
+			msg+= "Failed to connect to " + hostName + ":" + str(j)	
 
+    mail.sendmail(s,r,msg)
 
 # Makes a connect() system call to each IP:Port ( IPv4 )
 def checkServers(nodeList):
