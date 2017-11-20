@@ -1,87 +1,88 @@
 #!/usr/bin/python
 
+import os
 import sys
 import socket
 import xml.etree.ElementTree as ET
 
+global exitCode
+exitCode = 0
+
 class Node:
 
-	def __init__(self,hostName,port):
-		self.hostName = hostName
-		self.port = port
-	def getHostName(self):
-		return self.hostName
-	def getPort(self):
-		return self.port
+    def __init__(self,hostName, portList = None):
+        self.hostName = hostName
+        self.portList = portList
+    
+    def getHostName(self):
+        return self.hostName
 
-def generateEmail(aList):
+    def getPorts(self):
+        return self.portList
+
+
+def emailFailList(failList):
+
+    global exitCode
+    exitCode = 1
+    
+
+
+
+def checkServers(nodeList):
+
+    failList = []
+    for e in nodeList:
+
+	hostName = e.getHostName()
+	portList = e.getPorts()
+
+	try:
+		ipAddr = socket.gethostbyname(hostName)
+	except:
+		failList.append(Node(hostName,None))
+		continue
 	
+	failedPorts = []	
+	for port in portList:
+		
+		sockFd = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+                sockFd.settimeout(3)
+		
+		try:
+			sockFd.connect((ipAddr,port))
+		except:
+			failedPorts.append(port)
+		
+		sockFd.close()
 
-	htmlFile = open("error.html","w")
-	htmlFile.write("<html>\n<head>\n<title>Build Servers Status</title>\n</head>\n<body>")
-
-	for element in aList:
-		htmlFile.write("<p>Connection FAILED on %s:%s</p>" %(element.getHostName(),element.getPort()))
-
-	htmlFile.write("</body></html>")
+	if failedPorts:
+		failList.append(Node(hostName,failedPorts))
 	
+    if failList:
+    	emailFailList(failList)
 
-############ MAIN ##############
+########## MAIN ##########
 
-exitCode = 0
-XML_FILE = "servers.xml" 
+XML_FILE = sys.argv[1]
 tree = ET.parse(XML_FILE)
 root = tree.getroot()
 
-htmlFile = open("status.html","w")
-htmlFile.write("<html><head><title>Build Server Status</title></head><body>")
-htmlFile.write("<table>")
-
-# if ( connect -> Green, else Red )
-
-
-aList = []
+nodeList= []
 for node in root:
 
 	hostName = node.get("hostname")
-	htmlFile.write("<tr><th>" + str(hostName) )
 
-	try:	
-		ipAddr = socket.gethostbyname(hostName)
-	except:
-		print "Failed to resolve hostname %s" %(hostName)
-		exitCode = 1
-		continue 
-
+        portList = []
 	for i in node.iter("port"):
 
 		port = int(i.text)
-		aNode = Node(hostName,port)
-
-		sockFD = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-		sockFD.settimeout(3)
-		
-		canConnect = 1
-		try:
-			sockFD.connect((ipAddr,port))
-			#print "Connected to %s:%s" %(hostName,port)
-		except:
-			aList.append(aNode)
-			canConnect = 0
-			exitCode = 1
-
-		sockFD.close()
-		htmlFile.write("<td>")
-		if( canConnect == 1 ):
-			htmlFile.write("<font color='green'>" + str(port) + "</td>")
-
-		else:
-			htmlFile.write("<font color='red'>" + str(port) + "</td>")
+		portList.append(port)
+	
+	aNode = Node(hostName,portList)
+	nodeList.append(aNode)
 
 
-	htmlFile.write("</tr></th>")
-
-htmlFile.write("<table>")
-
+checkServers(nodeList)
 
 sys.exit(exitCode)
