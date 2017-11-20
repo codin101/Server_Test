@@ -71,15 +71,15 @@ def showFailures(failList):
 		for j in portList:
 			msg+= "Failed to connect to " + hostName + ":" + str(j) + "\n"
     
-    Body = string.join((
+    body = string.join((
         "From: %s" % sender,
         "To: %s" % recv,
         "Subject: %s" % subject,
         "",
         msg,
-        ), "\r\n")
+        ),"\r\n")
 
-    mail.sendmail(sender,recv,msg)
+    mail.sendmail(sender,recv,body)
 
 # Makes a connect() system call to each IP:Port ( IPv4 )
 def checkServers(nodeList):
