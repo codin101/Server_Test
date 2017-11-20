@@ -57,7 +57,8 @@ def showFailures(failList):
     
     sender = "Patrick.Eff@motorolasolutions.com"
     recv = "Patrick.Eff@motorolasolutions.com"
-  
+    subject = "Build Server CheckList: FAIL"
+ 
     msg = ""
     for i in failList:
 
@@ -71,12 +72,15 @@ def showFailures(failList):
 		for j in portList:
 			msg+= "Failed to connect to " + hostName + ":" + str(j) + "\n"
     
-    msgHeader = text(msg)
-    msgHeader['Subject'] = "Build Failure"
-    msgHeader['From'] = "Patrick.Eff"
-    msgHeader['To'] = "Patrick.Eff"
-	
-    mail.sendmail(sender,recv,msgHeader)
+    Body = string.join((
+        "From: %s" % From,
+        "To: %s" % To,
+        "Subject: %s" % Subj,
+        "",
+        msg,
+        ), "\r\n")
+
+    mail.sendmail(sender,recv,msg)
 
 # Makes a connect() system call to each IP:Port ( IPv4 )
 def checkServers(nodeList):
