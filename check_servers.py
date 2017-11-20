@@ -58,11 +58,9 @@ def showFailures(failList):
     sender = "Patrick.Eff@motorolasolutions.com"
     recv = "Patrick.Eff@motorolasolutions.com"
 
-    msg['From'] = "Patrick.Eff@motorolasolutions.com"
-    msg['To'] = "Patrick.Eff@motorolasolutions.com"
-    msg['Subject'] = "Build Server CheckList Status: FAIL"
+    msg = """From: Patrick.Eff@motorolasolutions.comTo: Patrick.Eff@motorolasolutions.com
+	  Subject: Build Server Checklist: FAILED"""
 
-    msg += "Build Server Check List Status: FAILED\n"
     for i in failList:
 
 	portList = i.getPorts()
