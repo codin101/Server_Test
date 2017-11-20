@@ -61,8 +61,9 @@ def checkServers(nodeList):
 	
 	if failedPorts:
 		failList.append(Node(hostName,failedPorts))
-
-    emailFailList(failList)
+	
+    if failList:
+    	emailFailList(failList)
 
 ########## MAIN ##########
 
