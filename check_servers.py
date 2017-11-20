@@ -74,9 +74,9 @@ def showFailures(failList):
 			msg+= "Failed to connect to " + hostName + ":" + str(j) + "\n"
     
     Body = string.join((
-        "From: %s" % From,
-        "To: %s" % To,
-        "Subject: %s" % Subj,
+        "From: %s" % sender,
+        "To: %s" % recv,
+        "Subject: %s" % subject,
         "",
         msg,
         ), "\r\n")
