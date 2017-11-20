@@ -55,7 +55,8 @@ def showFailures(failList):
     r = "Patrick.Eff@motorolasolutions.com"
     s = "Patrick.Eff@motorolasolutions.com"
 
-    msg = ""
+    msg = "Subject: {}test\n\n{}".format(SUBJECT,TEXT)
+    msg += "Build Server Check List Status: FAILED\n"
     for i in failList:
 
 	portList = i.getPorts()
