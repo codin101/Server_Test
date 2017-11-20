@@ -5,10 +5,11 @@ import subprocess
 import smtplib
 
 mail = smtplib.SMTP("localhost")
-msg = "<html><head><title>Fail</title></head></html>"
 r = "Patrick.Eff@motorolasolutions.com"
 s = "Patrick.Eff@motorolasolutions.com"
 
+d = open("errors.html","r")
+msg = d.read()
 mail.sendmail(s,r,msg)
 
 	
