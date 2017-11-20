@@ -55,6 +55,9 @@ def showFailures(failList):
 #    r = "Patrick.Eff@motorolasolutions.com"
 #    s = "Patrick.Eff@motorolasolutions.com"
     
+    sender = "Patrick.Eff@motorolasolutions.com"
+    recv = "Patrick.Eff@motorolasolutions.com"
+
     msg['From'] = "Patrick.Eff@motorolasolutions.com"
     msg['To'] = "Patrick.Eff@motorolasolutions.com"
     msg['Subject'] = "Build Server CheckList Status: FAIL"
@@ -72,7 +75,7 @@ def showFailures(failList):
 		for j in portList:
 			msg+= "Failed to connect to " + hostName + ":" + str(j) + "\n"
 
-    mail.sendmail(s,r,msg)
+    mail.sendmail(sender,recv,msg)
 
 # Makes a connect() system call to each IP:Port ( IPv4 )
 def checkServers(nodeList):
