@@ -9,6 +9,10 @@
 <node hostname="plhp061.comm.mot.com">
 	<port>22</port>
 	<port>23</port>
+	<port>99</port>
+</node>
+<node hostname="junk.junk">
+	<port>22</port>
 </node>
 <node hostname="plhp087.comm.mot.com">
 	<port>22</port>
