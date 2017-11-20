@@ -1,5 +1,27 @@
 #!/usr/bin/python
 
+################################################################################
+#
+#                  P Y T H O N   S P E C I F I C A T I O N
+#             COPYRIGHT 2017 MOTOROLA, INC. ALL RIGHTS RESERVED.
+#                    MOTOROLA CONFIDENTIAL PROPRIETARY
+#
+################################################################################
+#
+# FILE NAME: check_servers.py
+#
+#---------------------------------- PURPOSE ------------------------------------
+# 
+#  Check all the build servers found in servers.xml are online.
+#  Jenkins will send an email if any ports or servers are offline.
+# 
+#--------------------------- PROJECT SPECIFIC DATA -----------------------------
+# 
+#
+#----------------------------- MODULE INCLUDES ---------------------------------
+
+################################################################################
+
 import os
 import sys
 import socket
@@ -8,6 +30,8 @@ import xml.etree.ElementTree as ET
 global exitCode
 exitCode = 0
 
+# Node class:
+# Node has a hostName and dynamic array of ports
 class Node:
 
     def __init__(self,hostName, portList = None):
@@ -21,14 +45,25 @@ class Node:
         return self.portList
 
 
-def emailFailList(failList):
+def showFailures(failList):
 
     global exitCode
     exitCode = 1
-    
+
+    for i in failList:
+
+	portList = i.getPorts()
+	hostName = i.getHostName()
+
+	if not portList:
+		print "Failed to Resolve Host: " + hostName 
+		continue 
+	else:
+		for j in portList:
+			print "Failed to connect to " + hostName + ":" + str(j)	
 
 
-
+# Makes a connect() system call to each IP:Port ( IPv4 )
 def checkServers(nodeList):
 
     failList = []
@@ -60,7 +95,7 @@ def checkServers(nodeList):
 		failList.append(Node(hostName,failedPorts))
 	
     if failList:
-    	emailFailList(failList)
+    	showFailures(failList)
 
 ########## MAIN ##########
 
@@ -86,3 +121,14 @@ for node in root:
 checkServers(nodeList)
 
 sys.exit(exitCode)
+
+################################################################################
+#
+#                              HISTORY
+#
+################################################################################
+#
+# 11/21/2017	Patrick Eff  	Initial Creation
+#
+################################################################################
+
