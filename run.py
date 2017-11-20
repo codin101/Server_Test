@@ -27,16 +27,29 @@ def emailFailList(failList):
     exitCode = 1
 	
     htmlFile = open("errors.html","w")
-    buff = "<html><head><link rel='stylesheet' type='text/css' href='style.css'>"
-    buff = buff + "<title>Servers OffLine</title></head><body>"
-	
+
+    buff = []
+    buff.append(str("<html><head><link rel='stylesheet' type='text/css' href='style.css'>"))
+    buff.append(str("<title>Build Servers Offline</title></head>"))
+
+    b = []
     for i in failList:
+	aBuff = ""
 	if not i.getPorts():
-		print "Could not resolve: "
+		hostName = i.getHostName()
+		buff.append(str("<div class='navbar'><div class='dropdown'>"))
+		buff.append(str("<button class='dropbtn'><font color='red'>"))
+		buff.append(str("</font><i class='fa fa-caret-down'></i>"))
+		buff.append(str("</button><div class='dropdown-content'>"))
+		buff.append(str("<p>Failed to Resolve Hostname</p></div></div></div>"))
 	else:
 		for j in i.getPorts():
 			print i.getHostName() + ":" + str(j)
 
+	
+	buff.append(str("</body></html>"))
+	
+	htmlFile.write(str(buff))
 
 def checkServers(nodeList):
 
