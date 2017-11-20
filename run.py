@@ -25,10 +25,14 @@ def emailFailList(failList):
 
     global exitCode
     exitCode = 1
-
+	
+    htmlFile = open("errors.html","w")
+    buff = "<html><head><link rel='stylesheet' type='text/css' href='style.css'>"
+    buff = buff + "<title>Servers OffLine</title></head><body>"
+	
     for i in failList:
 	if not i.getPorts():
-		print "Could not resolve: " + hostName
+		print "Could not resolve: "
 	else:
 		for j in i.getPorts():
 			print i.getHostName() + ":" + str(j)
