@@ -55,7 +55,7 @@ def emailFailures(failList):
     mail = smtplib.SMTP("localhost")
 
     sender = "Patrick.Eff@motorolasolutions.com"
-    recv = "Patrick.Eff@motorolasolutions.com"
+    recv = "flscm@motorolasolutions.com"
     subject = "Build Server CheckList: FAILURE"
  
     msg = ""
