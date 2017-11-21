@@ -28,10 +28,27 @@ def emailFailList(failList):
 	
     htmlFile = open("errors.html","w")
 
+<<<<<<< .merge_file_rxLd9B
+    buff = []
+    buff.append(str("<html><head><link rel='stylesheet' type='text/css' href='style.css'>"))
+    buff.append(str("<title>Build Servers Offline</title></head>"))
+=======
 #    htmlFile.write("<html><head><link rel='stylesheet' type='text/css' href='style.css'>")
 #    htmlFile.write("<title>Build Servers Offline</title></head>")
+>>>>>>> .merge_file_h4JALu
 
+    b = []
     for i in failList:
+<<<<<<< .merge_file_rxLd9B
+	aBuff = ""
+	if not i.getPorts():
+		hostName = i.getHostName()
+		buff.append(str("<div class='navbar'><div class='dropdown'>"))
+		buff.append(str("<button class='dropbtn'><font color='red'>"))
+		buff.append(str("</font><i class='fa fa-caret-down'></i>"))
+		buff.append(str("</button><div class='dropdown-content'>"))
+		buff.append(str("<p>Failed to Resolve Hostname</p></div></div></div>"))
+=======
 	
 	hostName = i.getHostName()
 
@@ -43,6 +60,7 @@ def emailFailList(failList):
 		htmlFile.write("</font><i class='fa fa-caret-down'></i>")
 		htmlFile.write("</button><div class='dropdown-content'>")
 		htmlFile.write("<p>Cannot Reach Server!</p></div></div></div>")
+>>>>>>> .merge_file_h4JALu
 	else:
 		htmlFile.write("<div class='navbar'><div class='dropdown'>")
 		htmlFile.write("<button class='dropbtn'><font color='yellow'>")
@@ -50,13 +68,21 @@ def emailFailList(failList):
 		htmlFile.write("</font><i class='fa fa-caret-down'></i></button>")
 		htmlFile.write("<div class='dropdown-content'>")
 		for j in i.getPorts():
+<<<<<<< .merge_file_rxLd9B
+			print i.getHostName() + ":" + str(j)
+
+	
+	buff.append(str("</body></html>"))
+=======
 			
 			htmlFile.write("<p>Port: " + str(j) + " is down</p>")
 			
 		htmlFile.write("</div></div></div>")
 	
 #	htmlFile.write("</body></html>")
+>>>>>>> .merge_file_h4JALu
 	
+	htmlFile.write(str(buff))
 
 def checkServers(nodeList):
 
@@ -82,9 +108,13 @@ def checkServers(nodeList):
 			sockFd.connect((ipAddr,port))
 		except:
 			failedPorts.append(port)
+<<<<<<< .merge_file_rxLd9B
+	
+=======
 		
 		sockFd.close()
 
+>>>>>>> .merge_file_h4JALu
 	if failedPorts:
 		failList.append(Node(hostName,failedPorts))
 	
@@ -93,7 +123,11 @@ def checkServers(nodeList):
 
 ########## MAIN ##########
 
+<<<<<<< .merge_file_rxLd9B
+XML_FILE = "servers.xml"
+=======
 XML_FILE = sys.argv[1]
+>>>>>>> .merge_file_h4JALu
 tree = ET.parse(XML_FILE)
 root = tree.getroot()
 

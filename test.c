@@ -1,17 +1,17 @@
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <string.h>
 
 int main(void)
-{
+{	
 
-	DIR *dir = opendir(".");
+	const char *str1 = "stdout";
+	const char *str2 = "stderr";
 
-	struct dirent *dp ;
-
-	while( ( dp = readdir(dir) ) != NULL )
-	{
-		printf("%s\n",dp->d_name);
-
-	}
-
+	write(1,str1,strlen(str1));
+	write(2,str2,strlen(str2));
+		
 	return 0;
 
-}
+}//main
