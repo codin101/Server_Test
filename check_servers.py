@@ -1,72 +1,152 @@
 #!/usr/bin/python
 
-###### Motorola Solutions #######
-#				#	
-#	Author: Patrick Eff	#
-#	Date: 11/15/2017	#
-#				#
-#################################
+################################################################################
+#
+#                  P Y T H O N   S P E C I F I C A T I O N
+#             COPYRIGHT 2017 MOTOROLA, INC. ALL RIGHTS RESERVED.
+#                    MOTOROLA CONFIDENTIAL PROPRIETARY
+#
+################################################################################
+#
+# FILE NAME: check_servers.py
+#
+#---------------------------------- PURPOSE ------------------------------------
+# 
+#  Check all the build servers found in servers.xml are online.
+#  Jenkins will send an email if any ports or servers are offline.
+# 
+#--------------------------- PROJECT SPECIFIC DATA -----------------------------
+# 
+#
+#----------------------------- MODULE INCLUDES ---------------------------------
 
+################################################################################
+
+import os
 import sys
 import socket
+import string
+import smtplib
 import xml.etree.ElementTree as ET
 
+global exitCode
+exitCode = 0
+
+# Node class:
+# Node has a hostName and dynamic array of ports
 class Node:
 
-	def __init__(self,hostName,port):
-		self.hostName = hostName
-		self.port = port
-	def getHostName(self):
-		return self.hostName
-	def getPort(self):
-		return self.port
+    def __init__(self,hostName, portList = None):
+        self.hostName = hostName
+        self.portList = portList
+    
+    def getHostName(self):
+        return self.hostName
 
-def generateEmail(aList):
-
-	for element in aList:
-		print "Connection FAILED on %s:%s" %(element.getHostName(),element.getPort())
-	
-
-############ MAIN ##############
-
-exitCode = 0
-XML_FILE = "servers.xml" 
-tree = ET.parse(XML_FILE)
-root = tree.getroot()
+    def getPorts(self):
+        return self.portList
 
 
-aList = []
-for node in root:
+def showFailures(failList):
 
-	hostName = node.get("hostname")
-	
+    global exitCode
+    exitCode = 1
+
+    mail = smtplib.SMTP("localhost")
+
+    sender = "Patrick.Eff@motorolasolutions.com"
+    recv = "Patrick.Eff@motorolasolutions.com"
+    subject = "Build Server CheckList: FAILURE"
+ 
+    msg = ""
+    for i in failList:
+
+	portList = i.getPorts()
+	hostName = i.getHostName()
+
+	if not portList:
+		msg+= "Failed to Resolve Host: " + hostName  + "\n"
+		continue 
+	else:
+		for j in portList:
+			msg+= "Failed to connect to " + hostName + ":" + str(j) + "\n"
+    
+    body = string.join((
+        "From: %s" % sender,
+        "To: %s" % recv,
+        "Subject: %s" % subject,
+        "",
+        msg,
+        ),"\r\n")
+
+    mail.sendmail(sender,recv,body)
+
+# Makes a connect() system call to each IP:Port ( IPv4 )
+def checkServers(nodeList):
+
+    failList = []
+    for e in nodeList:
+
+	hostName = e.getHostName()
+	portList = e.getPorts()
+
 	try:
 		ipAddr = socket.gethostbyname(hostName)
 	except:
-		print "Failed to resolve hostname %s" %(hostName)
-		exitCode = 1
-		continue 
+		failList.append(Node(hostName,None))
+		continue
+	
+	failedPorts = []	
+	for port in portList:
+		
+		sockFd = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+                sockFd.settimeout(3)
+		
+		try:
+			sockFd.connect((ipAddr,port))
+		except:
+			failedPorts.append(port)
+		
+		sockFd.close()
 
+	if failedPorts:
+		failList.append(Node(hostName,failedPorts))
+	
+    if failList:
+    	showFailures(failList)
+
+########## MAIN ##########
+
+XML_FILE = sys.argv[1]
+tree = ET.parse(XML_FILE)
+root = tree.getroot()
+
+nodeList= []
+for node in root:
+
+	hostName = node.get("hostname")
+
+        portList = []
 	for i in node.iter("port"):
 
 		port = int(i.text)
-		aNode = Node(hostName,port)
+		portList.append(port)
+	
+	aNode = Node(hostName,portList)
+	nodeList.append(aNode)
 
-		sockFD = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-		sockFD.settimeout(3)
 
-		try:
-			sockFD.connect((ipAddr,port))
-			print "Connected to %s:%s" %(hostName,port)
-		except:
-			aList.append(aNode)
-			exitCode = 1
-
-		sockFD.close()
-
-if len(aList) > 0:
-	generateEmail(aList)
-else:
-	print "Successfully connected to all servers"
+checkServers(nodeList)
 
 sys.exit(exitCode)
+
+################################################################################
+#
+#                              HISTORY
+#
+################################################################################
+#
+# 11/21/2017	Patrick Eff  	Initial Creation
+#
+################################################################################
+

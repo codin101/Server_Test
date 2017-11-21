@@ -2,8 +2,8 @@
 
 logFile="open_ports.txt"
 
-# greppin' n' steppin'
 # awk'in   n' sqawkin'
+# greppin' n' steppin'
 # sed'in   n' forgettin'
 
 # rock n roll :)/
