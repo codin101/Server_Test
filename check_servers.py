@@ -47,7 +47,7 @@ class Node:
         return self.portList
 
 
-def showFailures(failList):
+def emailFailures(failList):
 
     global exitCode
     exitCode = 1
@@ -113,7 +113,7 @@ def checkServers(nodeList):
 		failList.append(Node(hostName,failedPorts))
 	
     if failList:
-    	showFailures(failList)
+    	emailFailures(failList)
 
 ########## MAIN ##########
 
