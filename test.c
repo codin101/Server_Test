@@ -20,6 +20,7 @@ int main(void)
 	int n = read(fd,buff,sizeof(buff));
 	printf("Read %d bytes: \n",n);
 	buff[n] = '\0';
-
+	
+	puts("the end");
 	exit(retCode);
 }//main
