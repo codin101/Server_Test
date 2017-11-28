@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+static int retCode = 0 ;
+
 int main(void)
 {	
 
@@ -12,6 +14,5 @@ int main(void)
 	write(1,str1,strlen(str1));
 	write(2,str2,strlen(str2));
 		
-	return 0;
-
+	exit(retCode);
 }//main
