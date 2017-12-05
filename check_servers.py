@@ -176,9 +176,7 @@ def checkBuildCompiles():
     os.environ["PATH"] = NEW_PATH
 
     cmd = """
-	rm -rf build ;
-	mkdir build ;
-	cd build ;
+	rm -rf apx;
 	export PATH="/local_data/tools/bin:$PATH" ;
 	git clone ssh://git@bitbucket.mot-solutions.com:7999/astro_sub/apx.git ;
 	cd apx ;
