@@ -189,7 +189,7 @@ def checkBuildCompiles():
     job = subprocess.Popen(['/bin/bash','-c',cmd],stdout=subprocess.PIPE)
     job.wait() # waitpid()
 
-    output = cwd + "/build/" + "apx/discovery/code/host/portable/output/bin/Discovery_Por_Host_arm9.bbf"
+    output = cwd + "/apx/discovery/code/host/portable/output/bin/Discovery_Por_Host_arm9.bbf"
 
     emailMsg += "<br><b>Task: Check Build Compiles</b>"
     emailMsg += "<div class=summary><table><tr><th bgcolor='grey'>Build Test</th><th bgcolor='grey'>Status</th></tr>"
