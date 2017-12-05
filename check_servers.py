@@ -188,14 +188,6 @@ def checkBuildCompiles():
 	emake disc_por_all | tail -5;
 	"""
 
-    cmd = """
-	cd build;
-	cd apx;
-	cd discovery/code ;
-	source ./build_env ;
-	emake disc_por_all | tail -5;
-	"""
-
     job = subprocess.Popen(['/bin/bash','-c',cmd],stdout=subprocess.PIPE)
     job.wait() # waitpid()
 
