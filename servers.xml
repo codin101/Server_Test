@@ -1,114 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
 <servers>
 <node hostname="plhp032.comm.mot.com">
-	<port>22</port>
-	<port>23</port>
-	<port>371</port>
+	<port service="ssh">22</port>
+	<port service="telnet">23</port>
+	<port service="clearcase">371</port>
 </node>
 <node hostname="plhp061.comm.mot.com">
-	<port>22</port>
-	<port>23</port>
+	<port service="ssh">22</port>
+	<port service="telnet">23</port>
 </node>
 <node hostname="plhp087.comm.mot.com">
-	<port>22</port>
-	<port>23</port>
-	<port>371</port>
+	<port service="ssh">22</port>
+	<port service="telnet">23</port>
+	<port service="clearcase">371</port>
 </node>
 <node hostname="plhp088.comm.mot.com">
-	<port>22</port>
-	<port>23</port>
-	<port>371</port>
+	<port service="ssh">22</port>
+	<port service="telnet">23</port>
+	<port service="clearcase">371</port>
 </node>
 <node hostname="fl08bld01.comm.mot.com">
-	<port>22</port>
-	<port>23</port>
+	<port service="ssh">22</port>
+	<port service="telnet">23</port>
 </node>
 <node hostname="fl08bld71.comm.mot.com">
-	<port>22</port>
-	<port>23</port>
-	<port>371</port>
+	<port service="ssh">22</port>
+	<port service="telnet">23</port>
+	<port service="clearcase">371</port>
 </node>
 <node hostname="fl08lx066v.comm.mot.com">
-	<port>22</port>
-	<port>80</port>
-	<port>3306</port>
+	<port service="ssh">22</port>
+	<port service="http">80</port>
+	<port service="mysql">3306</port>
 </node>
 <node hostname="fl08lxecloud01.comm.mot.com">
-	<port>22</port>
+	<port service="ssh">22</port>
 </node>
 <node hostname="fl08lxecloud02.comm.mot.com">
-	<port>22</port>
+	<port service="ssh">22</port>
 </node>
 <node hostname="fl08lxecloud03.comm.mot.com">
-	<port>22</port>
+	<port service="ssh">22</port>
 </node>
 <node hostname="fl08lxecloud04.comm.mot.com">
-	<port>22</port>
+	<port service="ssh">22</port>
 </node>
 <node hostname="fl08lxecloud05.comm.mot.com">
-	<port>22</port>
-	<port>371</port>
+	<port service="ssh">22</port>
+	<port service="clearcase">371</port>
 </node>
 <node hostname="fl08lxecloud06.comm.mot.com">
-	<port>22</port>
+	<port service="ssh">22</port>
 </node>
 <node hostname="fl08lxecloud08.comm.mot.com">
-	<port>22</port>
+	<port service="ssh">22</port>
 </node>
 <node hostname="fl08lxecloud09.comm.mot.com">
-	<port>22</port>
-	<port>371</port>
+	<port service="ssh">22</port>
+	<port service="clearcase">371</port>
 </node>
 <node hostname="fl08lxecloud11.am.mot-solutions.com">
-	<port>22</port>
-	<port>371</port>
+	<port service="ssh">22</port>
+	<port service="clearcase">371</port>
 </node>
 <node hostname="fl08lxkw001v.comm.mot.com">
-	<port>22</port>
+	<port service="ssh">22</port>
 </node>
 <node hostname="bitbucket.mot-solutions.com">
-	<port>80</port>
-	<port>443</port>
+	<port service="http">80</port>
+	<port service="https">443</port>
 </node>
 <node hostname="gitmirror-fla.mot-solutions.com">
-	<port>22</port>
+	<port service="ssh">22</port>
 </node>
 <node hostname="dgj736-3.am.mot-solutions.com">
-	<port>22</port>
-	<port>8080</port>
+	<port service="ssh">22</port>
+	<port service="tomcat">8080</port>
 </node>
 <node hostname="fl08jenkins.mot-solutions.com">
-	<port>22</port>
-	<port>8443</port>
-	<port>9443</port>
+	<port service="ssh">22</port>
+	<port service="jenkins:8443">8443</port>
+	<port service="jenkins:9443">9443</port>
 </node>
 <node hostname="gmail.com">
-	<port>80</port>
-	<port>443</port>
+	<port service="http">80</port>
+	<port service="https">443</port>
 </node>
 <node hostname="jira.mot-solutions.com">
-	<port>80</port>
-	<port>443</port>
+	<port service="http">80</port>
+	<port service="https">443</port>
 </node>
 <node hostname="gerrit.mot-solutions.com">
-	<port>22</port>
-	<port>80</port>
-	<port>443</port>
-	<port>8081</port>
-	<port>29418</port>
+	<port service="ssh">22</port>
+	<port service="http">80</port>
+	<port service="https">443</port>
+	<port service="converge_git_scm">8081</port>
+	<port service="gerrit_code_review_ssh">29418</port>
 </node>
 <node hostname="artifactory.mot-solutions.com">
-	<port>80</port>
-	<port>443</port>
+	<port service="http">80</port>
+	<port service="https">443</port>
 </node>
 <node hostname="ause1aswtmilbuild01.aws.mot-solutions.com">
-	<port>21</port>
-	<port>22</port>
-	<port>25</port>
+	<port service="ftp">21</port>
+	<port service="ssh">22</port>
+	<port service="smtp">25</port>
 </node>
 <node hostname="fl08lx066v.am.mot-solutions.com">
-	<port>22</port>
-	<port>80</port>
-	<port>3306</port>
+	<port service="ssh">22</port>
+	<port service="http">80</port>
+	<port service="mysql">3306</port>
+</node>
+<node hostname="confluence.mot-solutions.com">
+	<port service="http">80</port>
+	<port service="https">443</port>
+</node>
+<node hostname="fl08lxkw001v.am.mot-solutions.com">
+	<port service="ssh">22</port>
+	<port service="klockwork_http">8068</port>
 </node>
 </servers>
