@@ -43,11 +43,10 @@ void reverseList(List *list)
 {
 	if( list == NULL )
 		return ;
-	
 
 	Node *prev = NULL;
 	Node *curr = list->head;
-	Node *next = curr->next;
+	Node *next = list->head->next;
 
 	while( next != NULL )
 	{
@@ -55,7 +54,8 @@ void reverseList(List *list)
 		prev = curr;
 		curr = next;
 		next = next->next;
-	}
-
+	}	
+	
+	curr->next = prev;
 	list->head = curr;
 }
