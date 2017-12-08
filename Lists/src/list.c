@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "include/list.h"
+#include "list.h"
 
 void printList(List *list)
 {

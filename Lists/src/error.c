@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "include/error.h"
+#include "error.h"
 
 void fatal(const char *str)
 {

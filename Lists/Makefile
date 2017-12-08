@@ -1,18 +1,19 @@
-
 CC = gcc
-FLAGS = -Wall
-OUT = list
+FLAGS = -Wall -O3
+OBJS = list.o error.o
 
-all: main
+SOURCEDIR = "src/"
+OUT = "bin/list"
+OBJS = $(shell find . -name '*.o')
 
-main: main.c list error
-	$(CC) $(FLAGS) main.c list.o error.o -o $(OUT)
+SRC = $(pathsubst %.c)
+.PHONY: clean
 
-list: list.c
-	$(CC) $(FLAGS) -c list.c
+all: objs
+	$(CC) $(OBJS) -o $(OUT)
 
-error: error.c
-	$(CC) $(FLAGS) -c error.c
+objs:
+	$(CC) -c $(OBJS)
 
 clean:
 	rm -rf *.o $(OUT)

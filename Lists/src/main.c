@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "include/list.h"
-#include "include/error.h"
+#include "list.h"
+#include "error.h"
 
 int main(int argc,char **args)
 {
