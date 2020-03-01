@@ -1,27 +1,5 @@
 #!/usr/bin/python
 
-################################################################################
-#
-#                  P Y T H O N   S P E C I F I C A T I O N
-#             COPYRIGHT 2017 MOTOROLA, INC. ALL RIGHTS RESERVED.
-#                    MOTOROLA CONFIDENTIAL PROPRIETARY
-#
-################################################################################
-#
-# FILE NAME: check_servers.py
-#
-#---------------------------------- PURPOSE ------------------------------------
-# 
-#  Check all the build servers found in servers.xml are online.
-#  Jenkins will send an email if any ports or servers are offline.
-# 
-#--------------------------- PROJECT SPECIFIC DATA -----------------------------
-# 
-#
-#----------------------------- MODULE INCLUDES ---------------------------------
-
-################################################################################
-
 import os
 import sys
 import socket
@@ -63,8 +41,6 @@ def sendEmail():
     year = "%d" % now.year
     month = "%d" % now.month
   
-    sender = "flscm@motorolasolutions.com"
-    recv = "Patrick.Eff@motorolasolutions.com"
     subject = "[ Jenkins ] Environment Test Results: "
     if exitCode == 1:
 	subject += "FAILED"
